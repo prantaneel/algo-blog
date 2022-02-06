@@ -185,7 +185,7 @@ async function writeData() {
 getData();
 //------------------Landing Page----------------
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/landing-page.html");
+  res.render("landing-page");
 });
 
 app.get("/blog-editor", (req, res) => {
@@ -474,13 +474,13 @@ function checkOwner(req, res, next) {
 // });
 ////////////////////////////////////////////////////////////////////////////////////////////////
 app.get("/about-us", (req, res) => {
-  res.sendFile(__dirname + "/public/aboutUs.html");
+  res.render("aboutUs");
 });
 ////////////////////////////////////////////////////////////////
 //-------------end of endpoints----------------
 
 app.get("*", (req, res) => {
-  res.sendFile(__dirname + "/public/error.html");
+  res.render("error");
 });
 
 app.listen(process.env.PORT || 3000, () => {

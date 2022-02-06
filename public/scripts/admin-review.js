@@ -11,7 +11,7 @@ if (blogData === -1) {
   document.getElementById("blog-title").style.display = "none";
 
   document.getElementsByClassName("btngroup")[0].style.display = "none";
-  var errorHtml = loadPage("../error.html");
+  var errorHtml = "<h1>Error</h1>";
   document.write(errorHtml);
 } else {
   document.title = blogData.blog_title;
