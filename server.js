@@ -182,9 +182,9 @@ async function writeData() {
     console.error(err);
   });
 }
-getData();
 //------------------Landing Page----------------
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+  await getData().catch((err) => console.log(err));
   res.render("landing-page");
 });
 
