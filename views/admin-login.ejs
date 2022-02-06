@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/login.css">
+    <title>Admin Login</title>
+  </head>
+  <body>
+    
+    <div class="route" id="welcome"></div>
+    <div id="app">
+      <div class="app-view">  
+        <header class="app-header">
+          <h1>Requests</h1>
+          Welcome back,<br/>
+          <span class="app-subheading">
+            sign in to continue<br/>
+            to request window.
+            <% if (messages.error) { %>
+              <div class="error error-message"><%= messages.error %></div>
+            <% } %>
+          </span>
+        </header>
+        <form method="POST" action="/admin-login" id="login-form">
+            <input type="email" required pattern=".*\.\w{2,}" placeholder="Email Address" name="email" id='email' />
+            <input type="password" required placeholder="Password" name="password" id='password' />
+        </form>
+        
+        <a style="cursor: pointer;" class="app-button" id="login-button">Login</a>
+        <div class="app-register">
+          Don't have an account? <a href="/admin-register">Sign Up</a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </body>
+  <script>
+      document.getElementById("login-button").onclick = () => {
+        document.getElementById("login-form").submit();
+      }
+  </script>
+</html>

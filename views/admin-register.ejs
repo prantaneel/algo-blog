@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/login.css">
+    <title>Admin Register</title>
+  </head>
+  <body>
+    <div class="route" id="welcome"></div>
+    <div id="app">
+      
+      <div class="app-view">  
+        <header class="app-header">
+          <h1>Admin</h1>
+          Welcome,<br/>
+          <span class="app-subheading">
+            sign up to <br/>
+            request for admin role.
+            <% if (errorMessage) { %>
+              <div class="error error-message"><%= errorMessage %></div>
+            <% } %>
+          </span>
+        </header>
+        <form method="POST" action="/admin-register" id="register-form">
+            <input type="name" required placeholder="Name" name="name" id='name' />
+            <input type="email" required pattern=".*\.\w{2,}" placeholder="Email Address" name="email" id='email' />
+            <input type="password" required placeholder="Password" name="password" id='password' />
+        </form>
+        
+        <a style="cursor: pointer;" class="app-button" id="register-button">Register</a>
+        <div class="app-register">
+          Already have an account? <a href="/admin-login">Sign In</a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </body>
+  <script>
+      document.getElementById("register-button").onclick = () => {
+        document.getElementById("register-form").submit();
+      }
+  </script>
+</html>

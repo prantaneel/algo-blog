@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/content.css" />
+    <link rel="stylesheet" href="./styles/extra.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      src="https://cdn.tiny.cloud/1/dt5omy0vy0rxheqkc7tg2kgvugt393i96jsevx9sl6hc2ksp/tinymce/5/tinymce.min.js"
+      referrerpolicy="origin"
+    ></script>
+    <link href="./prism/prism.css" rel="stylesheet" />
+
+    <script src="/scripts/initialiseEditor.js"></script>
+    <link rel="stylesheet" href="/styles/_global.css" />
+    <title>Editor</title>
+    <!--Inter UI font-->
+    <link href="https://rsms.me/inter/inter-ui.css" rel="stylesheet" />
+
+    <!--vendors styles-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <!-- Bootstrap CSS / Color Scheme -->
+    <link rel="stylesheet" href="/knight/css/default.css" id="theme-color" />
+    <style>
+      .navbar {
+        backdrop-filter: saturate(180%) blur(10px);
+        background-image: linear-gradient(
+          rgba(0, 0, 0, 0.637),
+          rgba(0, 0, 0, 0)
+        );
+      }
+    </style>
+  </head>
+
+  <body>
+    <input
+      id="page-nav-toggle"
+      class="main-navigation-toggle"
+      type="checkbox"
+    />
+    <label for="page-nav-toggle">
+      <svg class="icon--menu-toggle" viewBox="0 0 60 30">
+        <g class="icon-group">
+          <g class="icon--menu">
+            <path d="M 10 5 L 70 5" />
+            <path d="M 10 20 L 70 20" />
+            <path d="M 10 35 L 70 35" />
+          </g>
+          <g class="icon--close">
+            <path d="M 15 0 L 45 30" />
+            <path d="M 15 30 L 45 0" />
+          </g>
+        </g>
+      </svg>
+    </label>
+    <nav class="main-navigation">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/blogs">Blogs</a></li>
+        <li><a href="/blog-editor">Create</a></li>
+        <li><a href="/about-us">About Us</a></li>
+      </ul>
+    </nav>
+    <div class="editor-body">
+      <div class="title-div">
+        <h2 id="title_text">Title</h2>
+        <label class="input">
+          <div class="title-input">
+            <input
+              class="input__field"
+              type="text"
+              placeholder=" "
+              id="input_field"
+              onchange="titleChange()"
+            />
+            <!-- <span class="input__label">a catchy title</span> -->
+          </div>
+        </label>
+      </div>
+      <div class="editor-main"><textarea id="mytextarea"></textarea></div>
+      <div class="live-editor" id="live-editor">
+        [<a href="#">Live Editor</a>]
+      </div>
+      <button id="btn" class="bubbly-button">Add</button>
+    </div>
+
+    <div id="blog" class="blog-body" style="display: none"></div>
+    <div id="snackbar">Submitted for review.</div>
+
+    <!--footer-->
+    <footer class="py-6">
+      <hr style="width: 80%; margin: 30px auto" />
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-5 mr-auto">
+            <h5>About Algo Blog</h5>
+            <p class="text-muted">
+              A platform developed as a side project for publishing articles on
+              computer science algortihms.
+            </p>
+            <ul class="list-inline social social-sm">
+              <li class="list-inline-item">
+                <a href="https://www.instagram.com/pranta.neel/"
+                  ><i class="fa fa-instagram"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://www.facebook.com/prantaneel.debnath.18"
+                  ><i class="fa fa-facebook"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#"><i class="fa fa-dribbble"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!--scroll to top-->
+    <div class="scroll-top">
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </div>
+    <script src="./prism/prism.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.7.3/feather.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="js/scripts.js"></script>
+  </body>
+  <script src="/scripts/live-editor.js"></script>
+  <script src="/scripts/actions.js"></script>
+</html>
