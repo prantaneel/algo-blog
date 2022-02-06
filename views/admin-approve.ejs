@@ -70,7 +70,7 @@
     <div id="empty-div"></div>
     <div class="request-head-decline">[<a href="/admin-declined">Declined Requests</a>]</div>
     <script>
-      var pending_admin_requests = <%-JSON.stringify(pending_requests)%>;
+      var pending_admin_requests = <%- JSON.stringify(pending_requests) %>
       //console.log(pending_admin_requests);
     </script>
      <!--footer-->

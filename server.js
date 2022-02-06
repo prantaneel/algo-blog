@@ -29,7 +29,6 @@ initializePassport(
 const OUT_OF_BOUNDS = constants.OUT_OF_BOUNDS;
 const INIT_BLOG_ID = constants.INIT_BLOG_ID;
 const BLOG_ID_INC = constants.BLOG_ID_INC;
-const PORT = constants.PORT;
 const timeURL = constants.TIME_URL;
 ////////////////////////////////////////////////////////////////
 const mongoDB =
