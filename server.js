@@ -183,9 +183,8 @@ async function writeData() {
 }
 //------------------Landing Page----------------
 app.get("/", async (req, res) => {
-  res.send("hello");
-  // await getData().catch((err) => console.log(err));
-  // res.render("landing-page");
+  await getData().catch((err) => console.log(err));
+  res.render("landing-page");
 });
 
 app.get("/blog-editor", (req, res) => {
