@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blogs</title>
-    <link rel="stylesheet" href="/styles/admin-approve.css"></link>
-    <link rel="stylesheet" href="/styles/_global.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Algo Blog</title>
+
     <!--Inter UI font-->
     <link href="https://rsms.me/inter/inter-ui.css" rel="stylesheet" />
 
@@ -18,6 +20,8 @@
 
     <!-- Bootstrap CSS / Color Scheme -->
     <link rel="stylesheet" href="/knight/css/default.css" id="theme-color" />
+    <link rel="stylesheet" href="/styles/admin-approve.css"></link>
+    <link rel="stylesheet" href="/styles/_global.css">
     <style>
       .navbar {
         backdrop-filter: saturate(180%) blur(10px);
@@ -29,49 +33,96 @@
     </style>
   </head>
   <body>
-    <input id="page-nav-toggle" class="main-navigation-toggle" type="checkbox" />
-  <label for="page-nav-toggle">
-    <svg class="icon--menu-toggle" viewBox="0 0 60 30">
-      <g class="icon-group">
-        <g class="icon--menu">
-          <path d="M 10 5 L 70 5" />
-          <path d="M 10 20 L 70 20" />
-          <path d="M 10 35 L 70 35" />
-        </g>
-        <g class="icon--close">
-          <path d="M 15 0 L 45 30" />
-          <path d="M 15 30 L 45 0" />
-        </g>
-      </g>
-    </svg>
-  </label>
-  
-<nav class="main-navigation">
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/blogs">Blogs</a></li>
-    <li><a href="/blog-editor">Create</a></li>
-    <li><a href="/about-us">About Us</a></li>
-  </ul>
-</nav>
+    <!--navigation-->
+    <section class="smart-scroll web-nav">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-dark">
+          <a class="navbar-brand heading-black" href="/"> ALGO BLOG </a>
+          <button
+            class="navbar-toggler navbar-toggler-right border-0"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span data-feather="grid"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link page-scroll" href="/blogs">Blogs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link page-scroll" href="/blog-editor">Create</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link page-scroll" href="/about-us">About Us</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </section>
+    <section class="phone-nav">
+      <input
+        id="page-nav-toggle"
+        class="main-navigation-toggle"
+        type="checkbox"
+      />
+      <label for="page-nav-toggle">
+        <svg class="icon--menu-toggle" viewBox="0 0 60 30">
+          <g class="icon-group">
+            <g class="icon--menu">
+              <path d="M 10 5 L 70 5" />
+              <path d="M 10 20 L 70 20" />
+              <path d="M 10 35 L 70 35" />
+            </g>
+            <g class="icon--close">
+              <path d="M 15 0 L 45 30" />
+              <path d="M 15 30 L 45 0" />
+            </g>
+          </g>
+        </svg>
+      </label>
 
-    <div class="request-head"><h1>Blogs</h1></div>
-    <table id = "data-table">
-      <tr class="row-labels">
-        <td>Blog Id</td>
-        <td>Blog Title</td>
-        <td>Publish Time</td>
-      </tr>
-    </table>
-    <div id="empty-div"></div>
-   <div class="page-navigator">
-    <div id="prev-num"></div>
-    <div id="next-num"></div>
-   </div>
+      <nav class="main-navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/blogs">Blogs</a></li>
+          <li><a href="/blog-editor">Create</a></li>
+          <li><a href="/about-us">About Us</a></li>
+        </ul>
+      </nav>
+    </section>
+    <!--hero header-->
+    <section class="py-6" id="home">
+            <div class="request-head"><h1>Blogs</h1></div>
+            <table id = "data-table">
+              <tr class="row-labels">
+                <td>Blog Id</td>
+                <td>Blog Title</td>
+                <td>Publish Time</td>
+              </tr>
+            </table>
+            <div id="empty-div"></div>
+            <div class="page-navigator">
+              <div id="prev-num"></div>
+              <div id="next-num"></div>
+            </div>
+    </section>
+    <script>
+      var blog_data = <%-JSON.stringify(blog_data)%>;
+      var page = <%- JSON.stringify(page) %>;
+      page = parseInt(page);
+      document.getElementById("next-num").innerHTML = `<a href="/blogs?p=${page+1}"><img src="https://img.icons8.com/ios-glyphs/30/ffffff/circled-chevron-right.png"/></a>`
+      document.getElementById("prev-num").innerHTML = `<a href="/blogs?p=${(page-1 >0 )?page-1:page}"><img src="https://img.icons8.com/ios-glyphs/30/ffffff/circled-chevron-left.png"/></a>`
+      //console.log(pending_admin_requests);
+    </script>
     <!--footer-->
     <footer class="py-6">
       <hr style="width: 80%; margin: 30px auto" />
-
       <div class="container">
         <div class="row">
           <div class="col-sm-5 mr-auto">
@@ -104,20 +155,19 @@
     <div class="scroll-top">
       <i class="fa fa-angle-up" aria-hidden="true"></i>
     </div>
-    <script>
-      var blog_data = <%-JSON.stringify(blog_data)%>;
-      var page = <%- JSON.stringify(page) %>;
-      page = parseInt(page);
-      document.getElementById("next-num").innerHTML = `<a href="/blogs?p=${page+1}"><img src="https://img.icons8.com/ios-glyphs/30/ffffff/circled-chevron-right.png"/></a>`
-      document.getElementById("prev-num").innerHTML = `<a href="/blogs?p=${(page-1 >0 )?page-1:page}"><img src="https://img.icons8.com/ios-glyphs/30/ffffff/circled-chevron-left.png"/></a>`
-      //console.log(pending_admin_requests);
-    </script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.7.3/feather.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-    <script src="/knight/js/scripts.js"></script>
+    <script src="js/scripts.js"></script>
   </body>
   <script src="/scripts/blogs.js"></script>
+  <script>
+    $("#btn-click").on("click", function (e) {
+      window.location.replace("/blogs");
+    });
+  </script>
 </html>

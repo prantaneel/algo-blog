@@ -29,37 +29,86 @@
     </style>
   </head>
   <body>
-    <input id="page-nav-toggle" class="main-navigation-toggle" type="checkbox" />
-    <label for="page-nav-toggle">
-      <svg class="icon--menu-toggle" viewBox="0 0 60 30">
-        <g class="icon-group">
-          <g class="icon--menu">
-            <path d="M 10 5 L 70 5" />
-            <path d="M 10 20 L 70 20" />
-            <path d="M 10 35 L 70 35" />
+    <section class="smart-scroll web-nav">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-dark">
+          <a class="navbar-brand heading-black" href="/"> ALGO BLOG </a>
+          <button
+            class="navbar-toggler navbar-toggler-right border-0"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span data-feather="grid"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link page-scroll" href="/blogs">Blogs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link page-scroll" href="/blog-editor">Create</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link page-scroll" href="/about-us">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link page-scroll" id="logout" href="#">Logout</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link page-scroll" href="/admin-register"
+                  >Register</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link page-scroll" href="/admin-password-change"
+                  >Change Password</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </section>
+    <section class="phone-nav">
+      <input
+        id="page-nav-toggle"
+        class="main-navigation-toggle"
+        type="checkbox"
+      />
+      <label for="page-nav-toggle">
+        <svg class="icon--menu-toggle" viewBox="0 0 60 30">
+          <g class="icon-group">
+            <g class="icon--menu">
+              <path d="M 10 5 L 70 5" />
+              <path d="M 10 20 L 70 20" />
+              <path d="M 10 35 L 70 35" />
+            </g>
+            <g class="icon--close">
+              <path d="M 15 0 L 45 30" />
+              <path d="M 15 30 L 45 0" />
+            </g>
           </g>
-          <g class="icon--close">
-            <path d="M 15 0 L 45 30" />
-            <path d="M 15 30 L 45 0" />
-          </g>
-        </g>
-      </svg>
-    </label>
-    <nav class="main-navigation">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/blogs">Blogs</a></li>
-        <li><a href="/blog-editor">Create</a></li>
-        <li><a href="#" id="logout">Logout</a></li>
-        <li><a href="/admin-register">Register</a></li>
-        <li><a href="/admin-password-change">Change Password</a></li>
+        </svg>
+      </label>
 
-
-      </ul>
-    </nav>
+      <nav class="main-navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/blogs">Blogs</a></li>
+          <li><a href="/blog-editor">Create</a></li>
+          <li><a href="#" id="logout">Logout</a></li>
+          <li><a href="/admin-register">Register</a></li>
+          <li><a href="/admin-password-change">Change Password</a></li>
+        </ul>
+      </nav>
+    </section>
     <form method="post" action="/admin-logout?_method=DELETE" id="logout-form"></form>
 
-    <div class="request-head"><h1>Declined Requests</h1></div>
+    <div class="request-head py-6"><h1>Declined Requests</h1></div>
     <table id = "data-table">
       <tr class="row-labels">
         <td>Blog Id</td>
