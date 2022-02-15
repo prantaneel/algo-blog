@@ -11,11 +11,11 @@ const passport = require("passport");
 
 const adminCredRouter=require("./routes/admin/adminCred");
 const adminWorkRounter=require("./routes/admin/adminWork");
-const basicRouter=require("./routes/basic/basic");
 const getBlogRouter=require("./routes/blog/blog");
 const newBlogRouter = require("./routes/blog/newBlog");
 const blogEditRouter = require("./routes/blog/blogEdit");
 const blogDataRouter = require("./routes/blog/blogData");
+const basicRouter=require("./routes/basic/basic");
 
 const express = require("express");
 const app = express();
@@ -47,11 +47,11 @@ app.use(methodOverride("_method"));
 
 app.use(adminCredRouter);
 app.use(adminWorkRounter);
-app.use(basicRouter);
 app.use(getBlogRouter);
 app.use(newBlogRouter);
 app.use(blogEditRouter);
 app.use(blogDataRouter);
+app.use(basicRouter);
 
 
 app.listen(process.env.PORT || 3000, () => {
