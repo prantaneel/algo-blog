@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 const blogSchema = mongoose.Schema({
   blog_data: {
     type: Object,
