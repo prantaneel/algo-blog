@@ -1,11 +1,11 @@
-const { getData }= require('../../functions/data');
-var { blog_data }= require('../../initialization'); 
+const { getData,dataPopulate }= require('../../functions/data');
 const { Router } = require('express');
 
 const getBlogRouter= Router();
 
 getBlogRouter.get("/blogs", async (req, res) => {
-    await getData().catch((err) => console.log(err));
+    var filedata = await getData().catch((err) => console.log(err));
+    var {blog_data} = dataPopulate(filedata);
     var PERPAGE = 23;
     var page;
     if (!req.query.p) page = 0;

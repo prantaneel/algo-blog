@@ -1,16 +1,15 @@
-const { writeData,getData, } = require('../../functions/data');
+const { writeData,getData,dataPopulate } = require('../../functions/data');
 const { checkAuthenticated,adminApprove } = require('../../functions/authFuncs');
 const { findInArr } = require('../../functions/randomFunc');
 const { OUT_OF_BOUNDS } = require('../../initialization');
-var { pending_requests,denied_blogs,  } = require('../../initialization');
 
 const { Router } = require('express');
 
 const adminWorkRounter = Router();
 
 adminWorkRounter.get("/admin-approve", checkAuthenticated, async (req, res) => {
-    await getData().catch((err) => console.log(err));
-  
+  var fileData = await getData().catch((err) => console.log(err));
+  var {pending_requests} = dataPopulate(fileData);
     //console.log(users);
     //console.log(pending_requests);
     res.render("admin-approve", {
@@ -18,13 +17,16 @@ adminWorkRounter.get("/admin-approve", checkAuthenticated, async (req, res) => {
     });
 });
 adminWorkRounter.get("/admin-declined", checkAuthenticated, async (req, res) => {
-    await getData().catch((err) => console.log(err));
+  var fileData = await getData().catch((err) => console.log(err));
+  var {denied_blogs} = dataPopulate(fileData);
     res.render("declined-requests", {
       declined_requests: denied_blogs,
     });
 });
 //---------------admin-previewer---------------
-adminWorkRounter.get("/admin-review", checkAuthenticated, (req, res) => {
+adminWorkRounter.get("/admin-review", checkAuthenticated, async (req, res) => {
+    var fileData = await getData().catch((err) => console.log(err));
+    var {blog_data, denied_blogs,pending_requests} = dataPopulate(fileData);
     var blogid = parseInt(req.query.bid);
     var sendData = findInArr(
       pending_requests.pending_blogs,
@@ -43,6 +45,8 @@ adminWorkRounter.get("/admin-review", checkAuthenticated, (req, res) => {
 //----------------------------------------------------------------
   
 adminWorkRounter.post("/admin-approve", checkAuthenticated, async (req, res) => {
+    var fileData = await getData().catch((err) => console.log(err));
+    var {blog_data, denied_blogs,pending_requests,users,blogIdState,blogTags} = dataPopulate(fileData);
     const approveBody = req.body;
     adminApprove(
       approveBody,
@@ -51,7 +55,7 @@ adminWorkRounter.post("/admin-approve", checkAuthenticated, async (req, res) => 
       blog_data.blogs,
       OUT_OF_BOUNDS
     );
-    await writeData().catch((err) => console.log(err));
+    await writeData(blog_data, denied_blogs,pending_requests,users,blogIdState,blogTags).catch((err) => console.log(err));
     res.sendStatus(200);
 });
 
