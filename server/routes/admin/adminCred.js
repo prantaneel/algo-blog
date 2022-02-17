@@ -1,7 +1,6 @@
 const passport = require("passport");
 const bcrypt = require("bcrypt");
-const { writeData,getData } = require("../../functions/data");
-var { users } = require('../../initialization');
+const { writeData,getData,dataPopulate } = require("../../functions/data");
 const { checkAuthenticated,checkOwner,checkNotAuthenticated } = require("../../functions/authFuncs");
 
 const { Router } = require('express');
@@ -10,9 +9,10 @@ const adminCredRouter = Router();
 
 /////---------------admin login--------------------------------
 adminCredRouter.get("/admin-login", checkNotAuthenticated, async (req, res) => {
-    await getData().catch((err) => console.log(err));
+    var fileData = await getData().catch((err) => console.log(err));
     res.render("admin-login.ejs");
-  });
+});
+
 adminCredRouter.get("/admin-register", checkOwner, (req, res) => {
     var regerr = req.query.registerError;
     if (regerr === "alreadyregistered") {
@@ -23,6 +23,8 @@ adminCredRouter.get("/admin-register", checkOwner, (req, res) => {
 });
 
 adminCredRouter.post("/admin-register", checkOwner, async (req, res) => {
+    var fileData = await getData().catch((err) => console.log(err));
+    var {blog_data, denied_blogs,pending_requests,users,blogIdState,blogTags} = dataPopulate(fileData);
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
       //need to check if the user with that mail already exists
@@ -45,7 +47,7 @@ adminCredRouter.post("/admin-register", checkOwner, async (req, res) => {
           role: "_mod",
           password: hashedPassword,
         });
-        await writeData().catch((err) => console.log(err));
+        await writeData(blog_data, denied_blogs,pending_requests,users,blogIdState,blogTags).catch((err) => console.log(err));
         res.redirect("/admin-login");
       }
     } catch {
@@ -76,7 +78,8 @@ adminCredRouter.get("/admin-password-change", checkAuthenticated, (req, res) => 
     } else res.render("change-password", { errorMessage: undefined });
 });
 adminCredRouter.post("/admin-password-change", checkAuthenticated, async (req, res) => {
-    await getData().catch((err) => console.log(err));
+    var fileData = await getData().catch((err) => console.log(err));
+    var {blog_data, denied_blogs,pending_requests,users,blogIdState,blogTags} = dataPopulate(fileData);
     var body = req.body;
     var user = req.user;
     const hashedPasswordnew = await bcrypt.hash(req.body.new_password, 10);
@@ -96,7 +99,7 @@ adminCredRouter.post("/admin-password-change", checkAuthenticated, async (req, r
           return;
         } else {
           users[element].password = hashedPasswordnew;
-          writeData();
+          writeData(blog_data, denied_blogs,pending_requests,users,blogIdState,blogTags);
           res.redirect("/admin-login");
         }
         return result;

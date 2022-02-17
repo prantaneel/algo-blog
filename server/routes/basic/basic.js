@@ -5,7 +5,7 @@ const basicRouter = Router();
 
 //Landing Page
 basicRouter.get("/", async (req, res) => {
-    await getData().catch((err) => console.log(err));
+    var fileData = await getData().catch((err) => console.log(err));
     res.render("landing-page");
 });
 

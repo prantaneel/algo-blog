@@ -1,7 +1,6 @@
 const { findInArr } = require('../../functions/randomFunc');
-const { getData, } = require('../../functions/data');
+const { getData,dataPopulate } = require('../../functions/data');
 const { OUT_OF_BOUNDS } = require('../../initialization');
-var { blog_data } = require('../../initialization');
 
 const { Router } = require('express');
 
@@ -12,7 +11,9 @@ blogDataRouter.get("/blog-editor", (req, res) => {
 });
 //----------------------New Blog Entry------------------------------
 //blog-entry can be later used as an external API endpoint
-blogDataRouter.get("/blog-entry", (req, res) => {
+blogDataRouter.get("/blog-entry", async (req, res) => {
+    var fileData = await getData().catch((err) => console.log(err));
+    var {blog_data} = dataPopulate(fileData);
     let bid = parseInt(req.query.bid);
     var returnObject = findInArr(blog_data.blogs, bid, OUT_OF_BOUNDS);
     if (returnObject !== OUT_OF_BOUNDS) res.json(returnObject);
@@ -23,7 +24,8 @@ blogDataRouter.get("/blog-entry", (req, res) => {
 //-------------------------------------------------
 //-------------------------------------------------
 blogDataRouter.get("/blog-data", async (req, res) => {
-    await getData().catch((err) => console.log(err));
+    var fileData = await getData().catch((err) => console.log(err));
+    var {blog_data} = dataPopulate(fileData);
     let bid = parseInt(req.query.bid);
     //console.log(bid);
   
